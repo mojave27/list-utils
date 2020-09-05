@@ -1,0 +1,25 @@
+{
+  "name": "list-utils",
+  "version": "0.1.0",
+  "description": "Functions for managing JavaScript arrays",
+  "main": "src/list-utils.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mojave27/list-utils.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "mojave27",
+  "license": "SEE LICENSE IN README.md",
+  "bugs": {
+    "url": "https://github.com/mojave27/list-utils/issues"
+  },
+  "homepage": "https://github.com/mojave27/list-utils#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
