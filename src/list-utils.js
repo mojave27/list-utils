@@ -120,17 +120,15 @@ const compareByName = (a, b) => {
   if (a.name > b.name) return 1
 }
 
-export {
-  compareByName,
-  dynamicSort,
-  findIndexOfId,
-  generateNewId,
-  getUniqueIds,
-  removeInvalidValuesFromList,
-  removeItem,
-  removeItemById,
-  removeItemFromArrayByIndex,
-  retrieveItemById,
-  sortByStringProperty,
-  updateItemById
-}
+exports.compareByName = compareByName
+exports.dynamicSort = dynamicSort
+exports.findIndexOfId = findIndexOfId
+exports.generateNewId = generateNewId
+exports.getUniqueIds = getUniqueIds
+exports.removeInvalidValuesFromList = removeInvalidValuesFromList
+exports.removeItem = removeItem
+exports.removeItemById = removeItemById
+exports.removeItemFromArrayByIndex = removeItemFromArrayByIndex
+exports.retrieveItemById = retrieveItemById
+exports.sortByStringProperty = sortByStringProperty
+exports.updateItemById = updateItemById

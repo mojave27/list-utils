@@ -1,6 +1,6 @@
 {
   "name": "list-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Functions for managing JavaScript arrays",
   "main": "src/list-utils.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "javascript"
   ],
-  "author": "mojave27",
+  "author": "mojave.npm@gmail.com",
   "license": "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://github.com/mojave27/list-utils/issues"
