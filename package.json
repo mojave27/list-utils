@@ -4,7 +4,8 @@
   "description": "Functions for managing JavaScript arrays",
   "main": "src/list-utils.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
