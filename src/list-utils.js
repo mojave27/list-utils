@@ -35,6 +35,8 @@ const sortByStringProperty = (arrayOfObjects, stringProperty, ignoreCase) => {
  * @returns new list with item removed
  */
 const removeItemFromArrayByIndex = (index, list) => {
+  validateIsNumber(index)
+  validateIsList(list)
   list.splice(index, 1)
   return list
 }
@@ -118,6 +120,18 @@ const compareByName = (a, b) => {
   if (a.name < b.name) return -1
   if (a.name === b.name) return 0
   if (a.name > b.name) return 1
+}
+
+const validateIsList = list => {
+  if(!Array.isArray(list)) {
+    throw `list argument is not a list: ${typeof list}`
+  }
+}
+
+const validateIsNumber = num => {
+  if(isNaN(num)){
+    throw `argument is not a number: ${num}`
+  }
 }
 
 exports.compareByName = compareByName
