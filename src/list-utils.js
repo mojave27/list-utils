@@ -15,6 +15,7 @@ const dynamicSort = (property, ignoreCase) => {
 
 const sortByStringProperty = (arrayOfObjects, stringProperty, ignoreCase) => {
   ignoreCase = typeof ignoreCase === 'undefined' ? false : ignoreCase
+  validateIsString(stringProperty)
 
   if (ignoreCase) {
     return arrayOfObjects.sort((a, b) =>
@@ -35,27 +36,33 @@ const sortByStringProperty = (arrayOfObjects, stringProperty, ignoreCase) => {
  * @returns new list with item removed
  */
 const removeItemFromArrayByIndex = (index, list) => {
-  validateIsNumber(index)
-  validateIsList(list)
+  validateIdAndListArgs(index, list)
   list.splice(index, 1)
   return list
 }
 
 /** id, list  */
 const findIndexOfId = (id, list) => {
-  // console.log(`[ArrayUtils] id: ${id}`)
-  // console.log(`[ArrayUtils] list: ${JSON.stringify(list)}`)
+  validateIdAndListArgs(id, list)
   let index = list.findIndex(element => Number(element.id) === Number(id))
   return index
 }
 
+const findIndexOfStringId = (id, list) => {
+  validateIdAndListArgs(id, list)
+  let index = list.findIndex(element => element.id === id)
+  return index
+}
+
 const removeItemById = (id, list) => {
+  validateIdAndListArgs(id, list)
   const index = findIndexOfId(id, list)
   const updatedList = removeItemFromArrayByIndex(index, list)
   return updatedList
 }
 
 const retrieveItemById = (id, list) => {
+  validateIdAndListArgs(id, list)
   let index = findIndexOfId(id, list)
   if (index > -1) {
     return list[index]
@@ -64,10 +71,22 @@ const retrieveItemById = (id, list) => {
   }
 }
 
+const retrieveItemByStringId = (id, list) => {
+  validateIdAndListArgs(id, list)
+  let index = findIndexOfStringId(id, list)
+  if (index > -1) {
+    return list[index]
+  } else {
+    throw new Error(`No item found matching id: ${id}`)
+  }
+}
+
+
 /* takes an updated item, id, and list.                  *
  * overwrites the item in the list with the matching id. *
  * returns the updated list.                             */
 const updateItemById = (update, id, list) => {
+  validateIdAndListArgs(id, list)
   let index = findIndexOfId(id, list)
   if (index > -1) {
     list[index] = update
@@ -78,6 +97,7 @@ const updateItemById = (update, id, list) => {
 }
 
 const removeItem = (id, list) => {
+  validateIdAndListArgs(id, list)
   let index = findIndexOfId(id, list)
   list.splice(index, 1)
   return list
@@ -122,6 +142,11 @@ const compareByName = (a, b) => {
   if (a.name > b.name) return 1
 }
 
+const validateIdAndListArgs = (id, list) => {
+  validateIsNumber(id)
+  validateIsList(list)
+}
+
 const validateIsList = list => {
   if(!Array.isArray(list)) {
     throw `list argument is not a list: ${typeof list}`
@@ -134,9 +159,16 @@ const validateIsNumber = num => {
   }
 }
 
+const validateIsString = arg => {
+  if(!typeof arg === 'string'){
+    throw `argument is not a string: ${arg}`
+  }
+}
+
 exports.compareByName = compareByName
 exports.dynamicSort = dynamicSort
 exports.findIndexOfId = findIndexOfId
+exports.findIndexOfStringId = findIndexOfStringId
 exports.generateNewId = generateNewId
 exports.getUniqueIds = getUniqueIds
 exports.removeInvalidValuesFromList = removeInvalidValuesFromList
@@ -144,5 +176,6 @@ exports.removeItem = removeItem
 exports.removeItemById = removeItemById
 exports.removeItemFromArrayByIndex = removeItemFromArrayByIndex
 exports.retrieveItemById = retrieveItemById
+exports.retrieveItemByStringId = retrieveItemByStringId
 exports.sortByStringProperty = sortByStringProperty
 exports.updateItemById = updateItemById
